@@ -11,7 +11,7 @@ ofxClientOSCManager::ofxClientOSCManager()
 //
 ofxClientOSCManager::~ofxClientOSCManager()
 {
-    ofRemoveListener(ofEvents().update, this, &ClientOSCManager::_update);
+    ofRemoveListener(ofEvents().update, this, &ofxClientOSCManager::_update);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ void ofxClientOSCManager::init( int _uniqueComputerID , int port)
 
     commonTimeOsc.init( &sender, uniqueComputerID );
 
-    ofAddListener(ofEvents().update, this, &ClientOSCManager::_update );
+    ofAddListener(ofEvents().update, this, &ofxClientOSCManager::_update );
 }
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -83,7 +83,7 @@ void ofxClientOSCManager::sendData( DataPacket _packet)
 //
 
 
-void ClientOSCManager::_update(ofEventArgs &e)
+void ofxClientOSCManager::_update(ofEventArgs &e)
 {
     // check for waiting messages
     while( receiver.hasWaitingMessages() )

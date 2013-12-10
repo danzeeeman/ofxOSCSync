@@ -5,17 +5,16 @@
 //  Created by Andreas Müller on 26/12/2012.
 //
 //
-
 #pragma once
-
 #include "ofxCommonTimeBase.h"
 #include "ofxOsc.h"
 
-class ofxCommonTimeOsc : public ofxCommonTimeBase {
+class ofxCommonTimeOSC : public ofxCommonTimeBase
+{
 public:
 
-    ofxCommonTimeOsc();
-    ~ofxCommonTimeOsc();
+    ofxCommonTimeOSC();
+    ~ofxCommonTimeOSC();
 
     void	init( ofxOscSender* _oscSender, int _uniqueComputerID );
 

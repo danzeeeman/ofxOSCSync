@@ -31,7 +31,7 @@ public:
         return &receiver;
     }
 
-    inline ofxCommonTimeOsc*  getCommonTimeOscObj()
+    inline ofxCommonTimeOSC*  getCommonTimeOscObj()
     {
         return &commonTimeOsc;
     }
@@ -42,7 +42,7 @@ private:
 
     int				uniqueComputerID;
 
-    ofxCommonTimeOsc		commonTimeOsc;
+    ofxCommonTimeOSC		commonTimeOsc;
 
     bool			haveSetupSender;
     ofxOscSender		sender;

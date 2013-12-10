@@ -10,7 +10,7 @@
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-CommonTimeBase::CommonTimeBase()
+ofxCommonTimeBase::ofxCommonTimeBase()
 {
 
     INITIALISATION_PING_DELAY_MILLIS		= 60;
@@ -28,35 +28,35 @@ CommonTimeBase::CommonTimeBase()
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-CommonTimeBase::~CommonTimeBase()
+ofxCommonTimeBase::~ofxCommonTimeBase()
 {
-    ofRemoveListener(ofEvents().update, this, &CommonTimeBase::_update);
+    ofRemoveListener(ofEvents().update, this, &ofxCommonTimeBase::_update);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void CommonTimeBase::baseInit()
+void ofxCommonTimeBase::baseInit()
 {
-    ofAddListener(ofEvents().update, this, &CommonTimeBase::_update );
+    ofAddListener(ofEvents().update, this, &ofxCommonTimeBase::_update );
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-int	CommonTimeBase::getTimeMillis()
+int	ofxCommonTimeBase::getTimeMillis()
 {
     return getInternalTimeMillis() + offsetMillis;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-float CommonTimeBase::getTimeSecs()
+float ofxCommonTimeBase::getTimeSecs()
 {
     return getTimeMillis() / 1000.0f;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void CommonTimeBase::_update(ofEventArgs &e)
+void ofxCommonTimeBase::_update(ofEventArgs &e)
 {
     int currentLocalMillis = getInternalTimeMillis();
 
@@ -90,7 +90,7 @@ void CommonTimeBase::_update(ofEventArgs &e)
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void CommonTimeBase::newReading( int _serverTimeMillis, int _pingMillis )
+void ofxCommonTimeBase::newReading( int _serverTimeMillis, int _pingMillis )
 {
     // bail if the ping round trip is just too long to be reliable
     if( _pingMillis > MAX_CONSIDERED_PING_TIME_MILLIS )
@@ -132,7 +132,7 @@ void CommonTimeBase::newReading( int _serverTimeMillis, int _pingMillis )
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void CommonTimeBase::calculateOffset( int _serverTimeMillis )
+void ofxCommonTimeBase::calculateOffset( int _serverTimeMillis )
 {
     int tmpPingTime = 0;
 
@@ -190,7 +190,7 @@ void CommonTimeBase::calculateOffset( int _serverTimeMillis )
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-int CommonTimeBase::getInternalTimeMillis()
+int ofxCommonTimeBase::getInternalTimeMillis()
 {
     return ofGetElapsedTimeMillis();
 }
