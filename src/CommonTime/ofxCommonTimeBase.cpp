@@ -1,9 +1,9 @@
 //
-//  CommonTime.cpp
-//  MultiScreenCommonTiming
+//  ofxCommonTime.cpp
+//
 //
 //  Created by Andreas Müller on 24/12/2012.
-//
+//  Modified by Dan Moore
 //
 
 #include "ofxCommonTimeBase.h"

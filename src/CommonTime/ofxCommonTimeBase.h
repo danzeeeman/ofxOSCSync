@@ -3,7 +3,7 @@
 //  MultiScreenCommonTiming
 //
 //  Created by Andreas Müller on 24/12/2012.
-//
+//  Modified by Dan Moore
 //
 
 #pragma once

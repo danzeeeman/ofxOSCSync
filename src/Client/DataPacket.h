@@ -1,8 +1,8 @@
 //
 //  DataPacket.h
-//  MultiScreenSimpleSync
+//  ofxOSCSync
 //
-//  Created by dantheman on 10/13/13.
+//  Created by Dan Moore on 10/13/13.
 //
 //
 #pragma once
