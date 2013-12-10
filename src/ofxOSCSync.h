@@ -1,4 +1,6 @@
-#include "Client/ClientOSCManage.h"
+#pragma once
+
+#include "Client/ofxClientOSCManage.h"
 #include "Client/DataPacket.h"
-#include "CommonTime/CommonTimeOsc.h"
-#include "Server/ServerOscManager.h"
+#include "CommonTime/ofxCommonTimeOsc.h"
+#include "Server/ofxServerOscManager.h"

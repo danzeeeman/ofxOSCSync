@@ -11,7 +11,6 @@
 class DataPacket
 {
 public:
-    
     vector<int> valuesInt;
     vector<float> valuesFloat;
     vector<string> valuesString;
