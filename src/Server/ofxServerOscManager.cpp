@@ -18,8 +18,8 @@ ofxServerOscManager::~ofxServerOscManager()
 //
 void ofxServerOscManager::init( string _xmlSettingsPath )
 {
-	string _serverSendHost	= "172.16.1.255";
-	int _serverSendPort		= 7778;
+	string _serverSendHost	= "127.0.0.1";
+	int _serverSendPort	= 7776;
 	int _serverReceivePort	= 7777;
 
 	ofxXmlSettings XML;
