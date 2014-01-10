@@ -26,14 +26,13 @@ void ofxServerOscManager::init( string _xmlSettingsPath )
 	bool loadedFile = XML.loadFile( _xmlSettingsPath );
 	if( loadedFile )
 	{
-		init( XML.getValue("Settings:ServerSendHost", "172.16.1.255"),
-             XML.getValue("Settings:ServerSendPost",	7778),
-             XML.getValue("Settings:ServerReceivePort",	7777) );
+	     _serverSendHost = XML.getValue("Settings:ServerSendHost", "172.16.1.255");
+             _serverSendPort = XML.getValue("Settings:ServerSendPost",	7776);
+             _serverReceivePort = XML.getValue("Settings:ServerReceivePort",	7777);
 	}
-	else
-	{
-		init( _serverSendHost, _serverSendPort, _serverReceivePort ); // init with default
-	}
+	
+	init( _serverSendHost, _serverSendPort, _serverReceivePort ); // init with default
+	
 }
 
 
