@@ -13,6 +13,21 @@ ofxClientOSCManager::~ofxClientOSCManager()
 {
     ofRemoveListener(ofEvents().update, this, &ofxClientOSCManager::_update);
 }
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
+//
+
+void ofxClientOSCManager::init()
+{
+    if(ofFile::doesFileExist(ofToDataPath("settings/osc-client.xml"))){
+        ofxXmlSettings settings;
+        settings.load(ofToDataPath("settings/osc-client.xml"));
+        int id = settings.getValue("osc:client:id", 0);
+        int port = settings.getValue("osc:client:port", 7776);
+        init(uniqueComputerID, port);
+    }else{
+        init(ofRandom(0, 255));
+    }
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //

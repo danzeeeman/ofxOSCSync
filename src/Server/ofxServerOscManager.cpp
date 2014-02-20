@@ -16,7 +16,7 @@ ofxServerOscManager::~ofxServerOscManager()
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void ofxServerOscManager::init( string _xmlSettingsPath )
+void ofxServerOscManager::init( string _xmlSettingsPath = "settings/oscsync-settings.xml")
 {
 	string _serverSendHost	= "127.0.0.1";
 	int _serverSendPort	= 7776;
@@ -26,9 +26,9 @@ void ofxServerOscManager::init( string _xmlSettingsPath )
 	bool loadedFile = XML.loadFile( _xmlSettingsPath );
 	if( loadedFile )
 	{
-	     _serverSendHost = XML.getValue("Settings:ServerSendHost", "172.16.1.255");
-             _serverSendPort = XML.getValue("Settings:ServerSendPost",	7776);
-             _serverReceivePort = XML.getValue("Settings:ServerReceivePort",	7777);
+	     _serverSendHost = XML.getValue("Settings:Server:Host", "172.16.1.255");
+             _serverSendPort = XML.getValue("Settings:Server:SendPost",	7776);
+             _serverReceivePort = XML.getValue("Settings:Server:ReceivePort",	7777);
 	}
 	
 	init( _serverSendHost, _serverSendPort, _serverReceivePort ); // init with default
@@ -243,19 +243,24 @@ void ofxServerOscManager::sendData( DataPacket _packet)
 
     for(unsigned int i = 0; i < _packet.valuesString.size(); i++){
         m.addStringArg( _packet.valuesString[i] );
+        ofLog(OF_LOG_VERBOSE)<<_packet.valuesString[i]<<endl;
     }
 	for( unsigned int i = 0; i < _packet.valuesInt.size(); i++ )
 	{
 		m.addIntArg( _packet.valuesInt[i] );
+        ofLog(OF_LOG_VERBOSE)<<_packet.valuesInt[i]<<endl;
 	}
 
 	for( unsigned int i = 0; i < _packet.valuesFloat.size(); i++ )
 	{
 		m.addFloatArg( _packet.valuesFloat[i] );
+        ofLog(OF_LOG_VERBOSE)<<_packet.valuesFloat[i]<<endl;
 	}
+    
 
     std::map<int, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
+        ofLog(OF_LOG_VERBOSE)<<"send message"<<endl;
         iter->second.sender.sendMessage(m);
     }
 }

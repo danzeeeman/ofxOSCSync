@@ -2,8 +2,9 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
-#include "CommonTime/ofxCommonTimeOsc.h"
-#include "Client/DataPacket.h"
+#include "ofxCommonTimeOsc.h"
+#include "DataPacket.h"
+#include "ofxXmlSettings.h"
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
 class ofxClientOSCManager
@@ -14,6 +15,8 @@ public:
     ~ofxClientOSCManager();
 
     void    init( int _uniqueComputerID, int _port = 7778);
+    
+    void    init( );
 
     void    _update(ofEventArgs &e);
 

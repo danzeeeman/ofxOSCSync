@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxOsc.h"
 #include "ofxXmlSettings.h"
-#include "Client/DataPacket.h"
+#include "DataPacket.h"
 
 
 struct oscClient
