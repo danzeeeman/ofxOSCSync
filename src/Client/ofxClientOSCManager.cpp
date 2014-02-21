@@ -16,11 +16,11 @@ ofxClientOSCManager::~ofxClientOSCManager()
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
 
-void ofxClientOSCManager::init()
+void ofxClientOSCManager::init(string _settingsfile)
 {
-    if(ofFile::doesFileExist(ofToDataPath("settings/osc-client.xml"))){
+    if(ofFile::doesFileExist(ofToDataPath(_settingsfile))){
         ofxXmlSettings settings;
-        settings.load(ofToDataPath("settings/osc-client.xml"));
+        settings.load(ofToDataPath(_settingsfile));
         int id = settings.getValue("osc:client:id", 0);
         int port = settings.getValue("osc:client:port", 7776);
         init(uniqueComputerID, port);

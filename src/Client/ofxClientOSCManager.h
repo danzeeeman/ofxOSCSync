@@ -16,7 +16,7 @@ public:
 
     void    init( int _uniqueComputerID, int _port = 7778);
     
-    void    init( );
+    void    init( string _settingsfile = "settings/oscsync-settings.xml");
 
     void    _update(ofEventArgs &e);
 
