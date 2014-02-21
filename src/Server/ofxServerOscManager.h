@@ -26,7 +26,7 @@ public:
     ofxServerOscManager();
     ~ofxServerOscManager();
 
-    void 			init( string _xmlSettingsPath );
+    void 			init( string _xmlSettingsPath = "settings/oscsync-settings.xml" );
     void 			init( string _serverSendHost, int _serverSendPort, int _serverReceivePort );
     void 			draw();
     void 			sendData(DataPacket _packet);

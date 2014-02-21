@@ -16,7 +16,7 @@ ofxServerOscManager::~ofxServerOscManager()
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
-void ofxServerOscManager::init( string _xmlSettingsPath = "settings/oscsync-settings.xml")
+void ofxServerOscManager::init( string _xmlSettingsPath)
 {
 	string _serverSendHost	= "127.0.0.1";
 	int _serverSendPort	= 7776;
@@ -26,7 +26,7 @@ void ofxServerOscManager::init( string _xmlSettingsPath = "settings/oscsync-sett
 	bool loadedFile = XML.loadFile( _xmlSettingsPath );
 	if( loadedFile )
 	{
-	     _serverSendHost = XML.getValue("Settings:Server:Host", "172.16.1.255");
+	     _serverSendHost = XML.getValue("Settings:Server:Host", "127.0.0.1");
              _serverSendPort = XML.getValue("Settings:Server:SendPost",	7776);
              _serverReceivePort = XML.getValue("Settings:Server:ReceivePort",	7777);
 	}
