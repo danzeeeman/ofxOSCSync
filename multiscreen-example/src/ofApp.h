@@ -32,7 +32,8 @@ public:
 	
     ofTrueTypeFont		fontSmall;
     float               currTime;
-    
+    int                 port;
+    int                 uuid;
     int                 screenIndex;
     int                 displayWidth;
     int                 displayHeight;

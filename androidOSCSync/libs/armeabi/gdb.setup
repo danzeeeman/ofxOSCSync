@@ -1,0 +1,6 @@
+set solib-search-path /Users/dantheman/src/oF/openFrameworks/addons/ofxOSCSync/androidOSCSync//obj/local/armeabi:/Users/dantheman/src/oF/openFrameworks/addons/ofxOSCSync/androidOSCSync//libs/armeabi
+directory /Users/dantheman/Downloads/android-ndk-r9d/platforms/android-17/arch-arm/usr/include
+directory /Users/dantheman/src/oF/openFrameworks/addons/ofxOSCSync/androidOSCSync//src
+directory /Users/dantheman/Downloads/android-ndk-r9d/sources/cxx-stl/system
+directory /Users/dantheman/src/oF/openFrameworks/addons/ofxOSCSync/androidOSCSync//libs/armeabi
+

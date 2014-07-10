@@ -1,0 +1,16 @@
+<settings>
+	<client>
+	    <uuid>123141</uuid>
+	    <index>0</index>
+	    <displayWidth>1920</displayWidth>
+	    <displayHeight>1080</displayHeight>
+	    <viewWidth>1280</viewWidth>
+	    <viewHeight>720</viewHeight>
+	    <receive>7776</receive> <!-- this is the server send port -->
+    </client>
+    <server>
+	    <host>172.16.1.255</host> <!-- This should be the muticast address for the network -->
+		<send>7776</send>
+		<receive>7777</receive>
+	 </server>
+</settings>

@@ -85,14 +85,10 @@ void ofxServerOscManager::_update(ofEventArgs &e)
 
 		if( m.getAddress() == "/ping" )
 		{
-			string tmpStr = "Ping, remote time: " + ofToString(m.getArgAsInt32(1)) +
-			" computer: " + ofToString(m.getArgAsInt32(0)) +
-			"  IP: " + m.getRemoteIp() +
-			" Port: " + ofToString(m.getRemotePort());
-            ofxOscSender & _sender = clients[m.getArgAsInt32(0)].sender;
+            ofxOscSender & _sender = clients[m.getRemoteIp()].sender;
             _sender.setup(m.getRemoteIp(), serverSendPort);
 
-            receivedMessageSubjects.push_back( tmpStr );
+            receivedMessageSubjects.push_back( m.getRemoteIp() );
 
 			// we need to send a "pong" message back, either we send this over the multicasting address,
 			// or we create a multicastSender for each new address and port that send us a message, I'm going to
@@ -205,13 +201,13 @@ void ofxServerOscManager::sendData( vector<string> _valuesStrings, vector<int> _
 	}
 
 	//sender.sendMessage( m );
-    std::map<int, oscClient>::iterator iter;
+    std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
         iter->second.sender.sendMessage(m);
     }
 }
 
-void ofxServerOscManager::sendData(int clientID, vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat )
+void ofxServerOscManager::sendData(string clientID, vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat )
 {
 	if( !initialised ) return;
 
@@ -258,7 +254,7 @@ void ofxServerOscManager::sendData( DataPacket _packet)
 	}
     
 
-    std::map<int, oscClient>::iterator iter;
+    std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
         ofLog(OF_LOG_VERBOSE)<<"send message"<<endl;
         iter->second.sender.sendMessage(m);
@@ -285,7 +281,7 @@ void ofxServerOscManager::sendData( DataPacket _packet, int clientID)
 		m.addFloatArg( _packet.valuesFloat[i] );
 	}
 
-    std::map<int, oscClient>::iterator iter;
+    std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
         iter->second.sender.sendMessage(m);
     }

@@ -25,7 +25,7 @@ void ofxClientOSCManager::init(string _settingsfile)
         int port = settings.getValue("osc:client:port", 7776);
         init(uniqueComputerID, port);
     }else{
-        init(ofRandom(0, 255));
+        init(ofRandom(0, 255), 7777);
     }
 }
 
@@ -114,6 +114,7 @@ void ofxClientOSCManager::_update(ofEventArgs &e)
             // if we get a hello message and we haven't set up our sender, get the Ip and port from the hello message
             if( !haveSetupSender )
             {
+                serverIP = m.getRemoteIp();
                 int sendPort = m.getArgAsInt32(0);
                 sender.setup( m.getRemoteIp(), sendPort );
                 commonTimeOsc.senderIsSetup( true );
