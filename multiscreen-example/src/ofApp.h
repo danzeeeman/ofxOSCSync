@@ -39,7 +39,10 @@ public:
     int                 displayHeight;
     int                 viewWidth;
     int                 viewHeight;
-    int                 screenOffsetX;
-    int                 screenOffsetY;
+
+    
+    ofVideoPlayer       player;
+    
+    
     
 };

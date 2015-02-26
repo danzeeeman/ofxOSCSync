@@ -14,6 +14,7 @@ void ofApp::setup()
     bool loadedFile = XML.loadFile( "Settings/sync-settings.xml" );
     if( loadedFile )
     {
+        XML.getValue("isServer", <#int defaultValue#>)
         uuid = XML.getValue("settings:client:uuid", uniqueID);
         screenIndex = XML.getValue("settings:client:index", 0);
         displayWidth = XML.getValue("settings:client:displayWidth", 1920);
@@ -21,7 +22,7 @@ void ofApp::setup()
         viewWidth = XML.getValue("settings:client:viewWidth", ofGetWidth());
         viewHeight = XML.getValue("settings:client:viewHeight", ofGetHeight());
         port = XML.getValue("settings:client:receive", 7778);
-        screenOffsetX = viewWidth*screenIndex;
+//        screenOffsetX = viewWidth*screenIndex;
     }
     
     client = new ofxClientOSCManager();
