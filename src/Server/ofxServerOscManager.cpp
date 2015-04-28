@@ -71,7 +71,7 @@ void ofxServerOscManager::_update(ofEventArgs &e)
 		m.addIntArg( serverReceivePort ); // add the port we would like to use to receive messages as an argument, seems more flexible than having a rule like remote port + 1
 		// add the scene that we are in as well? Otherwise screens joining will not know what scene we are supposed to be in.
 
-		multicastSender.sendMessage( m , false);
+		multicastSender.sendMessage( m);
 
 		lastSentHelloMessageMillis = getServerTime();
 	}
@@ -105,8 +105,8 @@ void ofxServerOscManager::_update(ofEventArgs &e)
 			m.addIntArg( getServerTime() );			// my time
 			m.addIntArg( remoteComputerTime );		// their time
 
-			_sender.sendMessage(m, false);
-            multicastSender.sendMessage(m, false);
+			_sender.sendMessage(m);
+            multicastSender.sendMessage(m);
 		}
         if(m.getAddress() == "/data"){
             DataPacket packet;
@@ -202,7 +202,7 @@ void ofxServerOscManager::sendData( vector<string> _valuesStrings, vector<int> _
 
     std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
-        iter->second.sender.sendMessage(m, false);
+        iter->second.sender.sendMessage(m);
     }
 }
 
@@ -226,7 +226,7 @@ void ofxServerOscManager::sendData(string clientID, vector<string> _valuesString
 		m.addFloatArg( _valuesFloat.at(i) );
 	}
 
-    clients[clientID].sender.sendMessage(m, false);
+    clients[clientID].sender.sendMessage(m);
 }
 
 void ofxServerOscManager::sendData( DataPacket _packet)
@@ -256,7 +256,7 @@ void ofxServerOscManager::sendData( DataPacket _packet)
     std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
         ofLog(OF_LOG_VERBOSE)<<"send message"<<endl;
-        iter->second.sender.sendMessage(m, false);
+        iter->second.sender.sendMessage(m);
     }
 }
 
@@ -282,7 +282,7 @@ void ofxServerOscManager::sendData( DataPacket _packet, int clientID)
 
     std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
-        iter->second.sender.sendMessage(m, false);
+        iter->second.sender.sendMessage(m);
     }
 }
 
