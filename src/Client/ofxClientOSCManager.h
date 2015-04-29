@@ -24,6 +24,8 @@ public:
     
     void    sendData(DataPacket _packet);
     
+    
+    
     inline ofxOscSender*  getOSCSender()
     {
         return &sender;

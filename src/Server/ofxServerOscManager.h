@@ -26,7 +26,7 @@ public:
     void 			init( string _xmlSettingsPath = "settings/sync-settings.xml" );
     void 			init( string _serverSendHost, int _serverSendPort, int _serverReceivePort );
     void 			draw();
-    void 			sendData(DataPacket _packet);
+    void 			sendData(DataPacket _packet,  bool broadCast = false);
     void 			sendData(DataPacket _packet, int clientID);
     void 			sendData(vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat );
     void 			sendData(string clientID, vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat );
