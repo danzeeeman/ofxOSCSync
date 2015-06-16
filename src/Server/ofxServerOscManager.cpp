@@ -84,7 +84,7 @@ void ofxServerOscManager::_update(ofEventArgs &e)
         ofxOscMessage m;
         receiver.getNextMessage(&m);
         
-        if( m.getAddress() == "/ping" && m.getRemoteIp() != "192.168.1.140" )
+        if( m.getAddress() == "/ping")
         {
             ofxOscSender & _sender = clients[m.getRemoteIp()].sender;
             _sender.setup(m.getRemoteIp(), serverSendPort);
@@ -128,6 +128,8 @@ void ofxServerOscManager::_update(ofEventArgs &e)
                     packet.valuesString.push_back( m.getArgAsString(i) );
                 }
             }
+            
+            sendData(packet);
             
             ofNotifyEvent( newDataEvent, packet, this );
         }
