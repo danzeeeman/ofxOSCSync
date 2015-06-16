@@ -66,7 +66,7 @@ void ofxServerOscManager::_update(ofEventArgs &e)
     // can get the address to the server if they are on the same network and listening to the right port
     if( (getServerTime() - lastSentHelloMessageMillis) > milliseBetweenHelloMessages )
     {
-        ofLog(OF_LOG_ERROR)<<"send packet"<<endl;
+        ofLog(OF_LOG_VERBOSE)<<"send packet"<<endl;
         ofxOscMessage m;
         m.setAddress("/hello");
         m.addIntArg( serverReceivePort ); // add the port we would like to use to receive messages as an argument, seems more flexible than having a rule like remote port + 1
