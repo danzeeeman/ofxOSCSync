@@ -27,9 +27,9 @@ public:
     void 			init( string _serverSendHost, int _serverSendPort, int _serverReceivePort );
     void 			draw();
     void 			sendData(DataPacket _packet);
-    void 			sendData(DataPacket _packet, int clientID);
+    void 			sendData(DataPacket _packet, string clientID);
     void 			sendData(vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat );
-    void 			sendData(string clientID, vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat );
+    void 			sendData(vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat, string clientID );
     bool			isInitialised() { return initialised; }
 
     void			_update(ofEventArgs &e);

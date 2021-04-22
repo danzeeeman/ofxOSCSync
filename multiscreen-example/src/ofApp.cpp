@@ -50,9 +50,7 @@ void ofApp::draw()
     float currTime = 0.0f;
     
     currTime = commonTimeOsc->getTimeSecs();
-    
-    
-    
+
 	// Set a color that pulsates based on the time we get
 	ofColor bgColor;
 	bgColor.setHsb( ((cosf(currTime/10.0f)+1.0f)/2.0f) * 255, 180, ((cosf(currTime*1.4f)+1.0f)/2.0f) * 255 );
