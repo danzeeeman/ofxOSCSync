@@ -51,15 +51,15 @@ void ofxClientOSCManager::sendData( vector<string> _valuesStrings, vector<int> _
     ofxOscMessage m;
     m.setAddress("/data");
 
-    for(auto value :_valuesStrings);
+    for(auto value : _valuesStrings)
     {
         m.addStringArg( value );
     }
-    for(auto value :_valuesInt)
+    for(auto value : _valuesInt)
     {
         m.addIntArg( value );
     }
-    for(auto value:_valuesFloat)
+    for(auto value : _valuesFloat)
     {
         m.addFloatArg(value );
     }
@@ -75,7 +75,7 @@ void ofxClientOSCManager::sendData( DataPacket _packet)
     ofxOscMessage m;
     m.setAddress("/data");
 
-    for(auto value : _packet.valueString);
+    for(auto value : _packet.valuesString)
     {
         m.addStringArg( value );
     }
@@ -112,9 +112,9 @@ void ofxClientOSCManager::_update(ofEventArgs &e)
             // if we get a hello message and we haven't set up our sender, get the Ip and port from the hello message
             if( !haveSetupSender )
             {
-                serverIP = m.getRemoteIp();
+                serverIP = m.getRemoteHost();
                 int sendPort = m.getArgAsInt32(0);
-                sender.setup( m.getRemoteIp(), sendPort );
+                sender.setup( m.getRemoteHost(), sendPort );
                 commonTimeOsc.senderIsSetup( true );
                 haveSetupSender = true;
             }
@@ -135,7 +135,7 @@ void ofxClientOSCManager::_update(ofEventArgs &e)
         {
             DataPacket packet;
 
-            for( int i = 0; i < m.getNumArgs(); i++ )
+            for(unsigned int i = 0; i < m.getNumArgs(); i++ )
             {
                 ofxOscArgType argType = m.getArgType(i);
                 if( argType == OFXOSC_TYPE_INT32 || argType ==  OFXOSC_TYPE_INT64 )

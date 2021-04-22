@@ -84,10 +84,10 @@ void ofxServerOscManager::_update(ofEventArgs &e)
 
 		if( m.getAddress() == "/ping" )
 		{
-            ofxOscSender & _sender = clients[m.getRemoteIp()].sender;
-            _sender.setup(m.getRemoteIp(), serverSendPort);
+            ofxOscSender & _sender = clients[m.getRemoteHost()].sender;
+            _sender.setup(m.getRemoteHost(), serverSendPort);
 
-            receivedMessageSubjects.push_back( m.getRemoteIp() );
+            receivedMessageSubjects.push_back( m.getRemoteHost() );
 
 			// we need to send a "pong" message back, either we send this over the multicasting address,
 			// or we create a multicastSender for each new address and port that send us a message, I'm going to
@@ -110,7 +110,7 @@ void ofxServerOscManager::_update(ofEventArgs &e)
         if(m.getAddress() == "/data"){
             DataPacket packet;
 
-			for( int i = 0; i < m.getNumArgs(); i++ )
+			for(unsigned int i = 0; i < m.getNumArgs(); i++ )
 			{
 				ofxOscArgType argType = m.getArgType(i);
 				if( argType == OFXOSC_TYPE_INT32 || argType ==  OFXOSC_TYPE_INT64 )
@@ -168,10 +168,13 @@ void ofxServerOscManager::draw()
 
 	ofDrawBitmapString(buf, 10, 20);
 
-	for( unsigned int i = 0; i < receivedMessageSubjects.size(); i++ )
+	int i = 0;
+	for( auto message : receivedMessageSubjects)
 	{
-		ofDrawBitmapString(receivedMessageSubjects.at(i), 10, 60 + (i * 20) );
+		ofDrawBitmapString(message, 10, 60 + (i * 20) );
+		i++;
 	}
+
 
 #endif
 }
@@ -207,7 +210,7 @@ void ofxServerOscManager::sendData( vector<string> _valuesStrings, vector<int> _
     }
 }
 
-void ofxServerOscManager::sendData(string clientID, vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat )
+void ofxServerOscManager::sendData(vector<string> _valuesStrings, vector<int> _valuesInt, vector<float> _valuesFloat, string clientID)
 {
 	if( !initialised ) return;
 
@@ -261,7 +264,7 @@ void ofxServerOscManager::sendData( DataPacket _packet)
     }
 }
 
-void ofxServerOscManager::sendData( DataPacket _packet, int clientID)
+void ofxServerOscManager::sendData( DataPacket _packet, string clientID)
 {
 	if( !initialised ) return;
 
@@ -283,10 +286,7 @@ void ofxServerOscManager::sendData( DataPacket _packet, int clientID)
 		m.addFloatArg( value );
 	}
 
-    std::map<string, oscClient>::iterator iter;
-    for(iter = clients.begin(); iter != clients.end(); iter++){
-        iter->second.sender.sendMessage(m, false);
-    }
+    clients[clientID].sender.sendMessage(m, false);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
