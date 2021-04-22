@@ -9,7 +9,7 @@
 	    <receive>7776</receive> <!-- this is the server send port -->
     </client>
     <server>
-	    <host>172.16.1.255</host> <!-- This should be the muticast address for the network -->
+	    <host>192.168.1.255</host> <!-- This should be the muticast address for the network -->
 		<send>7776</send>
 		<receive>7777</receive>
 	 </server>

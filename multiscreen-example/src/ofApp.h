@@ -1,5 +1,5 @@
 #pragma once
-
+#define TARGET_RASPBERRY_PI_LEGACY
 #include <set>
 #include "ofMain.h"
 #include "ofxOsc.h"

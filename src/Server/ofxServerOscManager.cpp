@@ -36,7 +36,6 @@ void ofxServerOscManager::init( string _xmlSettingsPath)
 }
 
 
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 //
 
@@ -187,17 +186,19 @@ void ofxServerOscManager::sendData( vector<string> _valuesStrings, vector<int> _
 	ofxOscMessage m;
 	m.setAddress("/data");
 
-    for(unsigned int i = 0; i < _valuesStrings.size(); i++){
-        m.addStringArg( _valuesStrings.at(i) );
-    }
-	for( unsigned int i = 0; i < _valuesInt.size(); i++ )
+    for(auto value : _valuesStrings)
 	{
-		m.addIntArg( _valuesInt.at(i) );
+        m.addStringArg( value );
+    }
+
+	for(auto value : _valuesInt)
+	{
+		m.addIntArg( value );
 	}
 
-	for( unsigned int i = 0; i < _valuesFloat.size(); i++ )
+	for( auto value: _valuesFloat )
 	{
-		m.addFloatArg( _valuesFloat.at(i) );
+		m.addFloatArg( value );
 	}
 
     std::map<string, oscClient>::iterator iter;
@@ -213,17 +214,19 @@ void ofxServerOscManager::sendData(string clientID, vector<string> _valuesString
 	ofxOscMessage m;
 	m.setAddress("/data");
 
-    for(unsigned int i = 0; i < _valuesStrings.size(); i++){
-        m.addStringArg( _valuesStrings.at(i) );
-    }
-	for( unsigned int i = 0; i < _valuesInt.size(); i++ )
+    for(auto value : _valuesStrings)
 	{
-		m.addIntArg( _valuesInt.at(i) );
+        m.addStringArg( value );
+    }
+
+	for(auto value : _valuesInt)
+	{
+		m.addIntArg( value );
 	}
 
-	for( unsigned int i = 0; i < _valuesFloat.size(); i++ )
+	for( auto value: _valuesFloat )
 	{
-		m.addFloatArg( _valuesFloat.at(i) );
+		m.addFloatArg( value );
 	}
 
     clients[clientID].sender.sendMessage(m, false);
@@ -236,26 +239,24 @@ void ofxServerOscManager::sendData( DataPacket _packet)
 	ofxOscMessage m;
 	m.setAddress("/data");
 
-    for(unsigned int i = 0; i < _packet.valuesString.size(); i++){
-        m.addStringArg( _packet.valuesString[i] );
-        ofLog(OF_LOG_VERBOSE)<<_packet.valuesString[i]<<endl;
-    }
-	for( unsigned int i = 0; i < _packet.valuesInt.size(); i++ )
+    for(auto value : _packet.valuesString)
 	{
-		m.addIntArg( _packet.valuesInt[i] );
-        ofLog(OF_LOG_VERBOSE)<<_packet.valuesInt[i]<<endl;
+        m.addStringArg( value );
+    }
+
+	for(auto value :  _packet.valuesInt)
+	{
+		m.addIntArg( value );
 	}
 
-	for( unsigned int i = 0; i < _packet.valuesFloat.size(); i++ )
+	for( auto value:  _packet.valuesFloat)
 	{
-		m.addFloatArg( _packet.valuesFloat[i] );
-        ofLog(OF_LOG_VERBOSE)<<_packet.valuesFloat[i]<<endl;
+		m.addFloatArg( value );
 	}
     
 
     std::map<string, oscClient>::iterator iter;
     for(iter = clients.begin(); iter != clients.end(); iter++){
-        ofLog(OF_LOG_VERBOSE)<<"send message"<<endl;
         iter->second.sender.sendMessage(m, false);
     }
 }
@@ -267,17 +268,19 @@ void ofxServerOscManager::sendData( DataPacket _packet, int clientID)
 	ofxOscMessage m;
 	m.setAddress("/data");
 
-    for(unsigned int i = 0; i < _packet.valuesString.size(); i++){
-        m.addStringArg( _packet.valuesString[i] );
-    }
-	for( unsigned int i = 0; i < _packet.valuesInt.size(); i++ )
+    for(auto value : _packet.valuesString)
 	{
-		m.addIntArg( _packet.valuesInt[i] );
+        m.addStringArg( value );
+    }
+
+	for(auto value :  _packet.valuesInt)
+	{
+		m.addIntArg( value );
 	}
 
-	for( unsigned int i = 0; i < _packet.valuesFloat.size(); i++ )
+	for( auto value:  _packet.valuesFloat)
 	{
-		m.addFloatArg( _packet.valuesFloat[i] );
+		m.addFloatArg( value );
 	}
 
     std::map<string, oscClient>::iterator iter;

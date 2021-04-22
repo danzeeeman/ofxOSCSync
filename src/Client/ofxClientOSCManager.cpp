@@ -51,18 +51,17 @@ void ofxClientOSCManager::sendData( vector<string> _valuesStrings, vector<int> _
     ofxOscMessage m;
     m.setAddress("/data");
 
-    for(unsigned int i = 0; i < _valuesStrings.size(); i++)
+    for(auto value :_valuesStrings);
     {
-        m.addStringArg( _valuesStrings.at(i) );
+        m.addStringArg( value );
     }
-    for( unsigned int i = 0; i < _valuesInt.size(); i++ )
+    for(auto value :_valuesInt)
     {
-        m.addIntArg( _valuesInt.at(i) );
+        m.addIntArg( value );
     }
-
-    for( unsigned int i = 0; i < _valuesFloat.size(); i++ )
+    for(auto value:_valuesFloat)
     {
-        m.addFloatArg( _valuesFloat.at(i) );
+        m.addFloatArg(value );
     }
 
     sender.sendMessage(m);
@@ -76,18 +75,17 @@ void ofxClientOSCManager::sendData( DataPacket _packet)
     ofxOscMessage m;
     m.setAddress("/data");
 
-    for(unsigned int i = 0; i < _packet.valuesString.size(); i++)
+    for(auto value : _packet.valueString);
     {
-        m.addStringArg( _packet.valuesString[i] );
+        m.addStringArg( value );
     }
-    for( unsigned int i = 0; i < _packet.valuesInt.size(); i++ )
+    for(auto value : _packet.valuesInt)
     {
-        m.addIntArg( _packet.valuesInt[i] );
+        m.addIntArg( value );
     }
-
-    for( unsigned int i = 0; i < _packet.valuesFloat.size(); i++ )
+    for(auto value: _packet.valuesFloat)
     {
-        m.addFloatArg( _packet.valuesFloat[i] );
+        m.addFloatArg( value );
     }
 
     sender.sendMessage(m);

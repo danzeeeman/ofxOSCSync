@@ -4,6 +4,7 @@
 //
 void ofApp::setup()
 {
+    ofBackground(0);
 	fontSmall.loadFont("Fonts/DIN.otf", 8 );
     
 	ofSeedRandom();
@@ -14,7 +15,6 @@ void ofApp::setup()
     bool loadedFile = XML.loadFile( "Settings/sync-settings.xml" );
     if( loadedFile )
     {
-        XML.getValue("isServer", <#int defaultValue#>)
         uuid = XML.getValue("settings:client:uuid", uniqueID);
         screenIndex = XML.getValue("settings:client:index", 0);
         displayWidth = XML.getValue("settings:client:displayWidth", 1920);
@@ -22,7 +22,6 @@ void ofApp::setup()
         viewWidth = XML.getValue("settings:client:viewWidth", ofGetWidth());
         viewHeight = XML.getValue("settings:client:viewHeight", ofGetHeight());
         port = XML.getValue("settings:client:receive", 7778);
-//        screenOffsetX = viewWidth*screenIndex;
     }
     
     client = new ofxClientOSCManager();
@@ -32,6 +31,7 @@ void ofApp::setup()
     commonTimeOsc->setEaseOffset( true );
     
     ofAddListener( client->newDataEvent, this, &ofApp::newData );
+//	ofExit();    
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ void ofApp::update()
 //
 void ofApp::draw()
 {
-    
+    ofBackground(0);
     float currTime = 0.0f;
     
     currTime = commonTimeOsc->getTimeSecs();
@@ -89,7 +89,6 @@ void ofApp::draw()
 
 void ofApp::newData( DataPacket& _packet  )
 {
-    
     ofLog()<<"new data"<<endl;
     
     for(int i = 0; i < _packet.valuesFloat.size(); i++){
@@ -101,7 +100,6 @@ void ofApp::newData( DataPacket& _packet  )
     for(int i = 0; i < _packet.valuesString.size(); i++){
         ofLog()<<_packet.valuesString[i]<<endl;
     }
-    
 }
 
 

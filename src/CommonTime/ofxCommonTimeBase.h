@@ -35,7 +35,7 @@ public:
     void	_update(ofEventArgs &e);
 
     // When doing animation with the timing value, it's nicer to smothly "rewind" or "fast forward" the offset rather than set it straight away
-    inline bool	setEaseOffset( bool _ease )
+    inline void	setEaseOffset( bool _ease )
     {
         easeOffset = _ease;
     }
