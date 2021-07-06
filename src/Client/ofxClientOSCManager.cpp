@@ -110,7 +110,7 @@ void ofxClientOSCManager::_update(ofEventArgs &e)
         if( m.getAddress() == "/hello" )
         {
             // if we get a hello message and we haven't set up our sender, get the Ip and port from the hello message
-            if( !haveSetupSender )
+            if( !haveSetupSender)
             {
                 serverIP = m.getRemoteHost();
                 int sendPort = m.getArgAsInt32(0);
